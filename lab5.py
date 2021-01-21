@@ -2,10 +2,11 @@
 
 import sys
 from PyQt5.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout)
+    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider)
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import Qt
 
 class Example(QMainWindow, QWidget):
 
@@ -32,9 +33,16 @@ class Example(QMainWindow, QWidget):
         btn3.move(350, 10)
             
         lbl1 = QLabel('label1', self)
-        lbl1.move(10, 40)
+        lbl1.move(50, 50)
 
-        self.setGeometry(0, 0, 600, 600)
+        lcd = QLCDNumber(self)
+        lcd.move(50, 100)
+        sld = QSlider(Qt.Horizontal, self)
+        sld.move(50, 150)
+     
+        sld.valueChanged.connect(lcd.display)
+
+        self.setGeometry(0, 0, 500, 300)
         self.setWindowTitle('test6')
         self.setWindowIcon(QIcon('bit.png'))
         self.show()
