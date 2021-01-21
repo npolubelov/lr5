@@ -18,18 +18,18 @@ class Example(QMainWindow, QWidget):
 
     def initUI(self):
 
-        self.statusBar().showMessage('Состояние')
+        self.statusBar()
         
-        btn1 = QPushButton('выход', self)
-        btn1.clicked.connect(QCoreApplication.instance().quit)
+        btn1 = QPushButton('кнопка1', self)
+        btn1.clicked.connect(self.buttonClicked)
         btn1.move(50, 10)
 
-        btn2 = QPushButton('выход2', self)
-        btn2.clicked.connect(QCoreApplication.instance().quit)
+        btn2 = QPushButton('кнопка2', self)
+        btn2.clicked.connect(self.buttonClicked)
         btn2.move(200, 10)
 
-        btn3 = QPushButton('выход3', self)
-        btn3.clicked.connect(QCoreApplication.instance().quit)
+        btn3 = QPushButton('кннопка3', self)
+        btn3.clicked.connect(self.buttonClicked)
         btn3.move(350, 10)
             
         lbl1 = QLabel('label1', self)
@@ -47,6 +47,10 @@ class Example(QMainWindow, QWidget):
         self.setWindowIcon(QIcon('bit.png'))
         self.show()
 
+    def buttonClicked(self):
+
+        sender = self.sender()
+        self.statusBar().showMessage(sender.text() + ' была нажата')
 
 if __name__ == '__main__':
 
