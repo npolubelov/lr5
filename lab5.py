@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import (QWidget, QToolTip,
+    QPushButton, QApplication)
+from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 
 class Example(QWidget):
@@ -14,8 +16,12 @@ class Example(QWidget):
 
     def initUI(self):
 
+        btn = QPushButton('кнопка1', self)
+        btn.resize(btn.sizeHint())
+        btn.move(10, 10)
+
         self.setGeometry(0, 0, 300, 300)
-        self.setWindowTitle('test2')
+        self.setWindowTitle('test3')
         self.setWindowIcon(QIcon('bit.png'))
 
         self.show()
