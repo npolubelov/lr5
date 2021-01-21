@@ -2,16 +2,27 @@
 
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QIcon
+
+class Example(QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+
+    def initUI(self):
+
+        self.setGeometry(0, 0, 300, 300)
+        self.setWindowTitle('test2')
+        self.setWindowIcon(QIcon('bit.png'))
+
+        self.show()
 
 
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-
-    w = QWidget()
-    w.resize(600, 600)
-    w.move(300, 300)
-    w.setWindowTitle('test')
-    w.show()
-
+    ex = Example()
     sys.exit(app.exec_())
