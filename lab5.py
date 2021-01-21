@@ -2,7 +2,9 @@
 
 import sys
 from PyQt5.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider, QInputDialog)
+    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, 
+    QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider, 
+    QInputDialog, QAction, QFileDialog)
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QCoreApplication
@@ -25,7 +27,7 @@ class Example(QMainWindow, QWidget):
         btn1.move(50, 10)
 
         btn2 = QPushButton('кнопка2', self)
-        btn2.clicked.connect(self.buttonClicked)
+        btn2.clicked.connect(self.showDialog1)
         btn2.move(200, 10)
 
         btn3 = QPushButton('кннопка3', self)
@@ -60,6 +62,16 @@ class Example(QMainWindow, QWidget):
 
         if ok:
             self.le.setText(str(text))
+    
+    def showDialog1(self):
+
+        fname = QFileDialog.getOpenFileName(self, 'Открыть файл', '/home')[0]
+
+        f = open(fname, 'r')
+
+        with f:
+            data = f.read()
+            self.le.setText(data)
 
 if __name__ == '__main__':
 
