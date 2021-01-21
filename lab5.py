@@ -4,11 +4,9 @@ import sys
 from PyQt5.QtWidgets import (QWidget, QToolTip,
     QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, 
     QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider, 
-    QInputDialog, QAction, QFileDialog)
-from PyQt5.QtGui import QFont
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtCore import Qt
+    QInputDialog, QAction, QFileDialog, QCheckBox)
+from PyQt5.QtGui import (QFont, QIcon)
+from PyQt5.QtCore import (QCoreApplication, Qt)
 
 class Example(QMainWindow, QWidget):
 
@@ -43,11 +41,16 @@ class Example(QMainWindow, QWidget):
         lcd.move(50, 100)
         sld = QSlider(Qt.Horizontal, self)
         sld.move(50, 150)
-     
+
+        cb = QCheckBox('Сменить статус', self)
+        cb.move(50, 200)
+        cb.toggle()
+        cb.stateChanged.connect(self.check)
+
         sld.valueChanged.connect(lcd.display)
 
         self.setGeometry(0, 0, 500, 300)
-        self.setWindowTitle('test6')
+        self.setWindowTitle('test7')
         self.setWindowIcon(QIcon('bit.png'))
         self.show()
 
@@ -72,6 +75,13 @@ class Example(QMainWindow, QWidget):
         with f:
             data = f.read()
             self.le.setText(data)
+
+    def check(self, state):
+
+        if state == Qt.Checked:
+            self.le.setText('Checked')
+        else:
+            self.le.setText('Unchecked')
 
 if __name__ == '__main__':
 
