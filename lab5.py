@@ -2,7 +2,7 @@
 
 import sys
 from PyQt5.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider)
+    QPushButton, QApplication, QMainWindow, QLabel, QHBoxLayout, QVBoxLayout, QLineEdit, QTextEdit, QLCDNumber, QSlider, QInputDialog)
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QCoreApplication
@@ -29,11 +29,13 @@ class Example(QMainWindow, QWidget):
         btn2.move(200, 10)
 
         btn3 = QPushButton('кннопка3', self)
-        btn3.clicked.connect(self.buttonClicked)
+        btn3.clicked.connect(self.showDialog)
         btn3.move(350, 10)
             
         lbl1 = QLabel('label1', self)
         lbl1.move(50, 50)
+        self.le = QLineEdit(self)
+        self.le.move(100, 50)
 
         lcd = QLCDNumber(self)
         lcd.move(50, 100)
@@ -51,6 +53,13 @@ class Example(QMainWindow, QWidget):
 
         sender = self.sender()
         self.statusBar().showMessage(sender.text() + ' была нажата')
+    
+    def showDialog(self):
+
+        text, ok = QInputDialog.getText(self, 'Диалоговое окно','введите текст:')
+
+        if ok:
+            self.le.setText(str(text))
 
 if __name__ == '__main__':
 
